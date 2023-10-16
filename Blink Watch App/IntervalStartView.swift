@@ -9,12 +9,12 @@ import SwiftUI
 
 struct IntervalStartView: View {
     @Binding var isTimerOn: Bool
-    @State private var blinkInterval: Double = 12.0
+    @State private var blinkInterval: Double = 4.0
     var hapticsModel: HapticsModel
     
     private var intervals: [Double] {
         var intervals: [Double] = []
-        stride(from: 5.0, to: 31.0, by: 1.0).forEach { i in
+        stride(from: 2.0, to: 16.0, by: 1.0).forEach { i in
             intervals.append(i)
         }
         return intervals
