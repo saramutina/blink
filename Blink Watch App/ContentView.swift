@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isTimerOn: Bool = false
+    @State var hapticsModel = HapticsModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            if isTimerOn {
+                BlinkView(isTimerOn: $isTimerOn, hapticsModel: hapticsModel)
+            }  else {
+                IntervalStartView(isTimerOn: $isTimerOn, hapticsModel: hapticsModel)
+            }
         }
-        .padding()
     }
 }
 
