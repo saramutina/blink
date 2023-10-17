@@ -9,14 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isTimerOn: Bool = false
-    @State var hapticsModel = HapticsModel()
+    @State var hapticsModel = HapticsModel.shared
     
     var body: some View {
         NavigationView {
             if isTimerOn {
-                BlinkView(isTimerOn: $isTimerOn, hapticsModel: hapticsModel)
+                BlinkView(
+                    isTimerOn: $isTimerOn,
+                    hapticsModel: hapticsModel,
+                    imageSwitchTimer: hapticsModel.imageSwitchTimer)
             }  else {
-                IntervalStartView(isTimerOn: $isTimerOn, hapticsModel: hapticsModel)
+                IntervalStartView(
+                    isTimerOn: $isTimerOn,
+                    blinkInterval: $hapticsModel.seconds,
+                    hapticsModel: hapticsModel)
             }
         }
     }

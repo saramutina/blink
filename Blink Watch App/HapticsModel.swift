@@ -7,14 +7,19 @@
 
 import Foundation
 import WatchKit
+import Combine
 
 class HapticsModel: NSObject, ObservableObject {
+    @Published var seconds: Double = 4.0
+    static let shared = HapticsModel()
+    
     private var timer: Timer?
+    var imageSwitchTimer: Publishers.Autoconnect<Timer.TimerPublisher>?
     private var session = WKExtendedRuntimeSession()
 
     private var isPlaying: Bool { timer != nil }
 
-    private func startSessionIfNeeded() {
+    func startSessionIfNeeded() {
         guard !isPlaying, session.state != .running else { return }
 
         session = WKExtendedRuntimeSession()
@@ -25,11 +30,12 @@ class HapticsModel: NSObject, ObservableObject {
         session.invalidate()
     }
 
-    private func tick(seconds: Double) {
+    private func tick() {
         WKInterfaceDevice.current().play(.start)
+        imageSwitchTimer = Timer.publish(every: seconds, on: .main, in: .common).autoconnect()
 
         timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { [weak self] (_) in
-            self?.tick(seconds: seconds)
+            self?.tick()
         })
     }
 
@@ -39,13 +45,21 @@ class HapticsModel: NSObject, ObservableObject {
 
         startSessionIfNeeded()
 
-        tick(seconds: seconds)
+        tick()
     }
 
     func stopPlayingTicks() {
         timer?.invalidate()
         timer = nil
+        imageSwitchTimer = nil
 
         stopSession()
+    }
+}
+
+class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    func applicationDidBecomeActive() {
+        // Restart WKExtendedRuntimeSession
+        HapticsModel.shared.startSessionIfNeeded()
     }
 }
