@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3746DF012ADFFABC00C86045 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3746DF002ADFFABC00C86045 /* Localizable.xcstrings */; };
+		3746DF022ADFFABC00C86045 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3746DF002ADFFABC00C86045 /* Localizable.xcstrings */; };
 		37F10F642ADD453100B5E2EC /* Blink Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 37F10F632ADD453100B5E2EC /* Blink Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		37F10F692ADD453100B5E2EC /* BlinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F10F682ADD453100B5E2EC /* BlinkApp.swift */; };
 		37F10F6B2ADD453100B5E2EC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F10F6A2ADD453100B5E2EC /* ContentView.swift */; };
@@ -42,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3746DF002ADFFABC00C86045 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		37F10F5D2ADD453100B5E2EC /* Blink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F10F632ADD453100B5E2EC /* Blink Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blink Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F10F682ADD453100B5E2EC /* BlinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkApp.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		37F10F562ADD453000B5E2EC = {
 			isa = PBXGroup;
 			children = (
+				3746DF002ADFFABC00C86045 /* Localizable.xcstrings */,
 				37F10F672ADD453100B5E2EC /* Blink Watch App */,
 				37F10F5E2ADD453100B5E2EC /* Products */,
 			);
@@ -167,6 +171,8 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
+				ru,
 			);
 			mainGroup = 37F10F562ADD453000B5E2EC;
 			productRefGroup = 37F10F5E2ADD453100B5E2EC /* Products */;
@@ -184,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3746DF012ADFFABC00C86045 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +200,7 @@
 			files = (
 				37F10F702ADD453400B5E2EC /* Preview Assets.xcassets in Resources */,
 				37F10F6D2ADD453400B5E2EC /* Assets.xcassets in Resources */,
+				3746DF022ADFFABC00C86045 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,7 +26,8 @@ struct IntervalStartView: View {
             Text("Pick blink interval:")
             Picker("", selection: $blinkInterval) {
                 ForEach(intervals, id: \.self) {
-                    Text("\($0, specifier: "%.0f") seconds")
+                    let key: String = "\(Int($0.rounded())) seconds"
+                    Text(LocalizedStringKey(key))
                 }
             }
             Button(action: {
@@ -40,11 +41,10 @@ struct IntervalStartView: View {
             ToolbarItem(placement: .topBarLeading) {
                 NavigationLink{
                     VStack {
-                        Text("Choose vibration intensity:")
+                        Text("Vibration intensity:")
                         Picker("", selection: $vibrateHarder) {
-                            ForEach([false, true], id: \.self) {
-                                Text("\($0 == false ? "Gentle" : "More prominent")")
-                            }
+                            Text("Gentle").tag(false)
+                            Text("More prominent").tag(true)
                         }
                     }
                 } label: {
