@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct IntervalStartView: View {
+    var hapticsModel: HapticsModel
     @Binding var isTimerOn: Bool
     @Binding var blinkInterval: Double
-    var hapticsModel: HapticsModel
+    @Binding var vibrateHarder: Bool
     
     private var intervals: [Double] {
         var intervals: [Double] = []
@@ -35,9 +36,26 @@ struct IntervalStartView: View {
                 Text("Start")
             })
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                NavigationLink{
+                    VStack {
+                        Text("Choose vibration intensity:")
+                        Picker("", selection: $vibrateHarder) {
+                            ForEach([false, true], id: \.self) {
+                                Text("\($0 == false ? "Gentle" : "More prominent")")
+                            }
+                        }
+                    }
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                }
+            }
+        }
+        
     }
 }
 
 #Preview {
-    IntervalStartView(isTimerOn: .constant(false), blinkInterval: .constant(4.0), hapticsModel: HapticsModel())
+    IntervalStartView(hapticsModel: HapticsModel(), isTimerOn: .constant(false), blinkInterval: .constant(4.0), vibrateHarder: .constant(true))
 }

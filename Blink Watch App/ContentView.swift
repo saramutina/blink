@@ -15,14 +15,16 @@ struct ContentView: View {
         NavigationView {
             if isTimerOn {
                 BlinkView(
-                    isTimerOn: $isTimerOn,
                     hapticsModel: hapticsModel,
+                    isTimerOn: $isTimerOn,
                     imageSwitchTimer: hapticsModel.imageSwitchTimer)
             }  else {
                 IntervalStartView(
+                    hapticsModel: hapticsModel,
                     isTimerOn: $isTimerOn,
                     blinkInterval: $hapticsModel.seconds,
-                    hapticsModel: hapticsModel)
+                    vibrateHarder: $hapticsModel.vibrateHarder
+                )
             }
         }
     }

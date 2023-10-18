@@ -50,7 +50,7 @@
 		37F10F6F2ADD453400B5E2EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		37F10F7A2ADD45EA00B5E2EC /* BlinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkView.swift; sourceTree = "<group>"; };
 		37F10F7C2ADD4AEA00B5E2EC /* IntervalStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalStartView.swift; sourceTree = "<group>"; };
-		37F10F7E2ADD619E00B5E2EC /* nfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = nfo.plist; sourceTree = SOURCE_ROOT; };
+		37F10F7E2ADD619E00B5E2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		37F10F7F2ADD626100B5E2EC /* HapticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +85,7 @@
 		37F10F672ADD453100B5E2EC /* Blink Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				37F10F7E2ADD619E00B5E2EC /* nfo.plist */,
+				37F10F7E2ADD619E00B5E2EC /* Info.plist */,
 				37F10F682ADD453100B5E2EC /* BlinkApp.swift */,
 				37F10F6A2ADD453100B5E2EC /* ContentView.swift */,
 				37F10F7C2ADD4AEA00B5E2EC /* IntervalStartView.swift */,
@@ -348,7 +348,7 @@
 				DEVELOPMENT_TEAM = 37884VKC8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Blink-Watch-App-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Blink;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -380,7 +380,7 @@
 				DEVELOPMENT_TEAM = 37884VKC8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Blink-Watch-App-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Blink;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;

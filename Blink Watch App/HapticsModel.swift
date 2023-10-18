@@ -11,6 +11,7 @@ import Combine
 
 class HapticsModel: NSObject, ObservableObject {
     @Published var seconds: Double = 4.0
+    @Published var vibrateHarder: Bool = false
     static let shared = HapticsModel()
     
     private var timer: Timer?
@@ -31,7 +32,12 @@ class HapticsModel: NSObject, ObservableObject {
     }
 
     private func tick() {
-        WKInterfaceDevice.current().play(.start)
+        if vibrateHarder {
+            WKInterfaceDevice.current().play(.notification)
+        } else {
+            WKInterfaceDevice.current().play(.start)
+        }
+        
         imageSwitchTimer = Timer.publish(every: seconds, on: .main, in: .common).autoconnect()
 
         timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { [weak self] (_) in
