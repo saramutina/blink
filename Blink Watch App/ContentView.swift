@@ -22,7 +22,7 @@ struct ContentView: View {
                 IntervalStartView(
                     hapticsModel: hapticsModel,
                     isTimerOn: $isTimerOn,
-                    blinkInterval: $hapticsModel.seconds,
+                    blinkInterval: $hapticsModel.secondsInterval,
                     vibrateHarder: $hapticsModel.vibrateHarder
                 )
             }

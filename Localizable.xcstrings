@@ -256,7 +256,7 @@
         }
       }
     },
-    "More prominent" : {
+    "Harder" : {
       "extractionState" : "manual",
       "localizations" : {
         "fr" : {
@@ -279,7 +279,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'intervalle de clignement :"
+            "value" : "Intervalle de clignement :"
           }
         },
         "ru" : {
@@ -330,7 +330,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'intensité des vibrations:"
+            "value" : "Intensité des vibrations:"
           }
         },
         "ru" : {

@@ -13,8 +13,7 @@ struct BlinkView: View {
     @Binding var isTimerOn: Bool
     var imageSwitchTimer: Publishers.Autoconnect<Timer.TimerPublisher>?
     
-    @State var imageToShow: String = "eyeOpen"
-    
+    @State var imageToShow: String = "eyeOpen"    
     
     var body: some View {
         VStack {

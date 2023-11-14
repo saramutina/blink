@@ -32,7 +32,7 @@ struct IntervalStartView: View {
             }
             Button(action: {
                 isTimerOn = true
-                hapticsModel.startPlayingTicks(seconds: blinkInterval)
+                hapticsModel.startPlayingTicks()
             }, label: {
                 Text("Start")
             })
@@ -44,7 +44,7 @@ struct IntervalStartView: View {
                         Text("Vibration intensity:")
                         Picker("", selection: $vibrateHarder) {
                             Text("Gentle").tag(false)
-                            Text("More prominent").tag(true)
+                            Text("Harder").tag(true)
                         }
                     }
                 } label: {

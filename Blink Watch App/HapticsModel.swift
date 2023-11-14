@@ -9,63 +9,66 @@ import Foundation
 import WatchKit
 import Combine
 
-class HapticsModel: NSObject, ObservableObject {
-    @Published var seconds: Double = 4.0
+class HapticsModel: WKExtendedRuntimeSession, ObservableObject {
+    @Published var secondsInterval: Double = 4.0
     @Published var vibrateHarder: Bool = false
     static let shared = HapticsModel()
+    private var session: WKExtendedRuntimeSession?
+    var isTimerRunning: Bool = false
+
+    @Published var imageSwitchTimer: Publishers.Autoconnect<Timer.TimerPublisher>?
     
-    private var timer: Timer?
-    var imageSwitchTimer: Publishers.Autoconnect<Timer.TimerPublisher>?
-    private var session = WKExtendedRuntimeSession()
-
-    private var isPlaying: Bool { timer != nil }
-
-    func startSessionIfNeeded() {
-        guard !isPlaying, session.state != .running else { return }
-
+    func startSession() {
         session = WKExtendedRuntimeSession()
-        session.start()
+        session?.delegate = self
+        session?.start()
+    }
+    
+    private func customTimer() {
+        if isTimerRunning {
+            DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(Int(secondsInterval))) { [weak self] in
+                self?.customTimer()
+            }
+        }
+        vibrate()
     }
 
-    private func stopSession() {
-        session.invalidate()
+    func startPlayingTicks() {
+        imageSwitchTimer = nil
+        imageSwitchTimer = Timer.publish(every: secondsInterval, on: .main, in: .common).autoconnect()
+        isTimerRunning = true
+        
+        startSession()
+        customTimer()
     }
 
-    private func tick() {
+    func stopPlayingTicks() {
+
+        imageSwitchTimer = nil
+        isTimerRunning = false
+
+        session?.invalidate()
+    }
+    
+    @objc func vibrate() {
         if vibrateHarder {
             WKInterfaceDevice.current().play(.notification)
         } else {
             WKInterfaceDevice.current().play(.start)
         }
-        
-        imageSwitchTimer = Timer.publish(every: seconds, on: .main, in: .common).autoconnect()
-
-        timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { [weak self] (_) in
-            self?.tick()
-        })
-    }
-
-    func startPlayingTicks(seconds: Double) {
-        timer?.invalidate()
-        timer = nil
-
-        startSessionIfNeeded()
-
-        tick()
-    }
-
-    func stopPlayingTicks() {
-        timer?.invalidate()
-        timer = nil
-        imageSwitchTimer = nil
-
-        stopSession()
     }
 }
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
-    func applicationDidBecomeActive() {
-        // Restart WKExtendedRuntimeSession
-        HapticsModel.shared.startSessionIfNeeded()
+extension HapticsModel: WKExtendedRuntimeSessionDelegate {
+    func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
+        
+    }
+    
+    func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+        
+    }
+    
+    func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+        
     }
 }

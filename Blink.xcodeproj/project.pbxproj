@@ -45,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		3746DF002ADFFABC00C86045 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		37D4AFB42B03D45500DDFB83 /* Blink Watch App.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Blink Watch App.entitlements"; sourceTree = "<group>"; };
 		37F10F5D2ADD453100B5E2EC /* Blink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F10F632ADD453100B5E2EC /* Blink Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blink Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F10F682ADD453100B5E2EC /* BlinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkApp.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		37F10F672ADD453100B5E2EC /* Blink Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				37D4AFB42B03D45500DDFB83 /* Blink Watch App.entitlements */,
 				37F10F7E2ADD619E00B5E2EC /* Info.plist */,
 				37F10F682ADD453100B5E2EC /* BlinkApp.swift */,
 				37F10F6A2ADD453100B5E2EC /* ContentView.swift */,
@@ -350,6 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Blink Watch App/Blink Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blink Watch App/Preview Content\"";
@@ -358,6 +361,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Blink;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your health data is not shared.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your blinks session is updated to keep the app working in the background.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -382,6 +387,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Blink Watch App/Blink Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blink Watch App/Preview Content\"";
@@ -390,6 +396,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Blink;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your health data is not shared.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your blinks session is updated to keep the app working in the background.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
