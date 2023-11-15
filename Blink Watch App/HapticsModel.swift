@@ -14,8 +14,8 @@ class HapticsModel: WKExtendedRuntimeSession, ObservableObject {
     @Published var vibrateHarder: Bool = false
     static let shared = HapticsModel()
     private var session: WKExtendedRuntimeSession?
+    private var workItem: DispatchWorkItem?
     var isTimerRunning: Bool = false
-
     @Published var imageSwitchTimer: Publishers.Autoconnect<Timer.TimerPublisher>?
     
     func startSession() {
@@ -26,9 +26,10 @@ class HapticsModel: WKExtendedRuntimeSession, ObservableObject {
     
     private func customTimer() {
         if isTimerRunning {
-            DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(Int(secondsInterval))) { [weak self] in
-                self?.customTimer()
+            workItem = DispatchWorkItem {
+                self.customTimer()
             }
+            DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(Int(secondsInterval)), execute: workItem!)
         }
         vibrate()
     }
@@ -43,9 +44,9 @@ class HapticsModel: WKExtendedRuntimeSession, ObservableObject {
     }
 
     func stopPlayingTicks() {
-
         imageSwitchTimer = nil
         isTimerRunning = false
+        workItem?.cancel()
 
         session?.invalidate()
     }
