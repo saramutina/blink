@@ -13,10 +13,11 @@ class HapticsModel: WKExtendedRuntimeSession, ObservableObject {
     @Published var secondsInterval: Double = 4.0
     @Published var vibrateHarder: Bool = false
     static let shared = HapticsModel()
-    private var session: WKExtendedRuntimeSession?
-    private var workItem: DispatchWorkItem?
     var isTimerRunning: Bool = false
     @Published var imageSwitchTimer: Publishers.Autoconnect<Timer.TimerPublisher>?
+    private var session: WKExtendedRuntimeSession?
+    private var workItem: DispatchWorkItem?
+    private var startTime: Date?
     
     func startSession() {
         session = WKExtendedRuntimeSession()
@@ -32,10 +33,11 @@ class HapticsModel: WKExtendedRuntimeSession, ObservableObject {
             DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(Int(secondsInterval)), execute: workItem!)
         }
         vibrate()
+        stopAfterOneHour()
     }
 
     func startPlayingTicks() {
-        imageSwitchTimer = nil
+        startTime = Date.now
         imageSwitchTimer = Timer.publish(every: secondsInterval, on: .main, in: .common).autoconnect()
         isTimerRunning = true
         
@@ -44,11 +46,20 @@ class HapticsModel: WKExtendedRuntimeSession, ObservableObject {
     }
 
     func stopPlayingTicks() {
+        startTime = nil
         imageSwitchTimer = nil
         isTimerRunning = false
+        
         workItem?.cancel()
-
         session?.invalidate()
+        WKInterfaceDevice.current().play(.stop)
+    }
+    
+    func stopAfterOneHour() {
+        if (startTime != nil) && (Date.now > startTime! + 3600) {
+            stopPlayingTicks()
+            WKInterfaceDevice.current().play(.stop)
+        }
     }
     
     @objc func vibrate() {
